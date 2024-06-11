@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleCalc.css" />
+    <title>Calculadora de CPC</title>
+</head>
+<body>
+    <h1>Calculadora de CPC</h1>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="costRange">Custo Total (R$): <span id="costValue">500</span></label>
+        </div>
+        <input type="range" id="costRange" min="0" max="1000" value="500" step="10" oninput="calculateCPC()" class="slider">
+    </div>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="clicksRange">Número de Cliques: <span id="clicksValue">100</span></label>
+        </div>
+        <input type="range" id="clicksRange" min="1" max="1000" value="100" step="1" oninput="calculateCPC()" class="slider">
+    </div>
+    <div class="result">
+        CPC: R$ <span id="cpcResult">5.00</span>
+    </div>
+
+    <script>
+        function calculateCPC() {
+            // Obtém os valores dos inputs range
+            const cost = document.getElementById('costRange').value;
+            const clicks = document.getElementById('clicksRange').value;
+
+            // Atualiza os valores mostrados ao lado dos sliders
+            document.getElementById('costValue').innerText = cost;
+            document.getElementById('clicksValue').innerText = clicks;
+
+            // Calcula o CPC
+            if (clicks > 0) {
+                const cpc = cost / clicks;
+                document.getElementById('cpcResult').innerText = cpc.toFixed(2);
+            } else {
+                document.getElementById('cpcResult').innerText = '0.00';
+            }
+        }
+
+        // Calcula o CPC inicial na carga da página
+        calculateCPC();
+    </script>
+</body>
+</html>

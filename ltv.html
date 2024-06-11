@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleCalc.css" />
+    <title>Calculadora de LTV</title>
+</head>
+
+<body>
+    <h1>Calculadora de LTV</h1>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="avgPurchaseValueRange">Valor Médio de Compra (R$): <span
+                    id="avgPurchaseValue">100</span></label>
+        </div>
+        <input type="range" id="avgPurchaseValueRange" min="0" max="1000" value="100" step="10"
+            oninput="calculateLTV()"  class="slider">
+    </div>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="purchaseFrequencyRange">Frequência de Compras (número de compras/ano): <span
+                    id="purchaseFrequency">5</span></label>
+        </div>
+        <input type="range" id="purchaseFrequencyRange" min="1" max="50" value="5" step="1" oninput="calculateLTV()"  class="slider">
+    </div>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="customerLifespanRange">Tempo Médio de Retenção (anos): <span
+                    id="customerLifespan">2</span></label>
+        </div>
+        <input type="range" id="customerLifespanRange" min="1" max="20" value="2" step="1" oninput="calculateLTV()"  class="slider">
+    </div>
+    <div class="result">
+        LTV: R$ <span id="ltvResult">1000.00</span>
+    </div>
+
+    <script>
+        function calculateLTV() {
+            // Obtém os valores dos inputs range
+            const avgPurchaseValue = document.getElementById('avgPurchaseValueRange').value;
+            const purchaseFrequency = document.getElementById('purchaseFrequencyRange').value;
+            const customerLifespan = document.getElementById('customerLifespanRange').value;
+
+            // Atualiza os valores mostrados ao lado dos sliders
+            document.getElementById('avgPurchaseValue').innerText = avgPurchaseValue;
+            document.getElementById('purchaseFrequency').innerText = purchaseFrequency;
+            document.getElementById('customerLifespan').innerText = customerLifespan;
+
+            // Calcula o LTV
+            const ltv = avgPurchaseValue * purchaseFrequency * customerLifespan;
+            document.getElementById('ltvResult').innerText = ltv.toFixed(2);
+        }
+
+        // Calcula o LTV inicial na carga da página
+        calculateLTV();
+    </script>
+</body>
+
+</html>

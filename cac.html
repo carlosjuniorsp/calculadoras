@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de CAC</title>
+    <link rel="stylesheet" href="styleCalc.css" />
+</head>
+
+<body>
+    <h1>Calculadora de CAC</h1>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="costRange">Custo Total de Aquisição (R$): <span id="costValue">500</span></label>
+        </div>
+        <input type="range" id="costRange" min="0" max="10000" value="500" step="10" oninput="calculateCAC()" class="slider">
+    </div>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="customersRange">Número de Clientes Adquiridos: <span id="customersValue">50</span></label>
+        </div>
+        <input type="range" id="customersRange" min="1" max="1000" value="50" step="1" oninput="calculateCAC()" class="slider">
+    </div>
+    <div class="result">
+        CAC: R$ <span id="cacResult">10.00</span>
+    </div>
+
+    <script>
+        function calculateCAC() {
+            // Obtém os valores dos inputs range
+            const cost = document.getElementById('costRange').value;
+            const customers = document.getElementById('customersRange').value;
+
+            // Atualiza os valores mostrados ao lado dos sliders
+            document.getElementById('costValue').innerText = cost;
+            document.getElementById('customersValue').innerText = customers;
+
+            // Calcula o CAC
+            if (customers > 0) {
+                const cac = cost / customers;
+                document.getElementById('cacResult').innerText = cac.toFixed(2);
+            } else {
+                document.getElementById('cacResult').innerText = '0.00';
+            }
+        }
+
+        // Calcula o CAC inicial na carga da página
+        calculateCAC();
+    </script>
+</body>
+
+</html>

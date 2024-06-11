@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleCalc.css" />
+    <title>Calculadora de ROI</title>
+</head>
+
+<body>
+    <h1>Calculadora de ROI</h1>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="investmentRange">Investimento: <span id="investmentValue">500</span></label>
+        </div>
+        <input type="range" id="investmentRange" min="0" max="1000" value="500" step="10" oninput="calculateROI()" class="slider">
+    </div>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="returnRange">Retorno: <span id="returnValue">750</span></label>
+        </div>
+        <input type="range" id="returnRange" min="0" max="2000" value="750" step="1" oninput="calculateROI()" class="slider">
+    </div>
+    <div class="result">
+        ROI: <span id="roiResult">50%</span>
+    </div>
+
+    <script>
+        function calculateROI() {
+            // Obtém os valores dos inputs range
+            const investment = document.getElementById('investmentRange').value;
+            const returnAmount = document.getElementById('returnRange').value;
+
+            // Atualiza os valores mostrados ao lado dos sliders
+            document.getElementById('investmentValue').innerText = investment;
+            document.getElementById('returnValue').innerText = returnAmount;
+
+            // Calcula o ROI
+            if (investment > 0) {
+                const roi = ((returnAmount - investment) / investment) * 100;
+                document.getElementById('roiResult').innerText = roi.toFixed(2) + '%';
+            } else {
+                document.getElementById('roiResult').innerText = '0%';
+            }
+        }
+
+        // Calcula o ROI inicial na carga da página
+        calculateROI();
+    </script>
+</body>
+
+</html>

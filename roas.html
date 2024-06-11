@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleCalc.css" />
+    <title>Calculadora de ROAS</title>
+</head>
+
+<body>
+    <h1>Calculadora de ROAS</h1>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="revenueRange">Receita Gerada (R$): <span id="revenueValue">1000</span></label>
+        </div>
+        <input type="range" id="revenueRange" min="0" max="10000" value="1000" step="10" oninput="calculateROAS()"  class="slider">
+    </div>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="adSpendRange">Gastos com Publicidade (R$): <span id="adSpendValue">500</span></label>
+        </div>
+        <input type="range" id="adSpendRange" min="0" max="5000" value="500" step="10" oninput="calculateROAS()"  class="slider">
+    </div>
+    <div class="result">
+        ROAS: <span id="roasResult">2.00</span>
+    </div>
+
+    <script>
+        function calculateROAS() {
+            // Obtém os valores dos inputs range
+            const revenue = document.getElementById('revenueRange').value;
+            const adSpend = document.getElementById('adSpendRange').value;
+
+            // Atualiza os valores mostrados ao lado dos sliders
+            document.getElementById('revenueValue').innerText = revenue;
+            document.getElementById('adSpendValue').innerText = adSpend;
+
+            // Calcula o ROAS
+            if (adSpend > 0) {
+                const roas = revenue / adSpend;
+                document.getElementById('roasResult').innerText = roas.toFixed(2);
+            } else {
+                document.getElementById('roasResult').innerText = '0.00';
+            }
+        }
+
+        // Calcula o ROAS inicial na carga da página
+        calculateROAS();
+    </script>
+</body>
+
+</html>

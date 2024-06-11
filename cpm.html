@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleCalc.css" />
+    <title>Calculadora de CPM</title>
+</head>
+
+<body>
+    <h1>Calculadora de CPM</h1>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="costRange">Custo Total (R$): <span id="costValue">500</span></label>
+        </div>
+        <input type="range" id="costRange" min="0" max="10000" value="500" step="10" oninput="calculateCPM()" class="slider">
+    </div>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="impressionsRange">Número de Impressões: <span id="impressionsValue">10000</span></label>
+        </div>
+        <input type="range" id="impressionsRange" min="1" max="100000" value="10000" step="100"
+            oninput="calculateCPM()" class="slider">
+    </div>
+    <div class="result">
+        CPM: R$ <span id="cpmResult">50.00</span>
+    </div>
+
+    <script>
+        function calculateCPM() {
+            // Obtém os valores dos inputs range
+            const cost = document.getElementById('costRange').value;
+            const impressions = document.getElementById('impressionsRange').value;
+
+            // Atualiza os valores mostrados ao lado dos sliders
+            document.getElementById('costValue').innerText = cost;
+            document.getElementById('impressionsValue').innerText = impressions;
+
+            // Calcula o CPM
+            if (impressions > 0) {
+                const cpm = (cost / impressions) * 1000;
+                document.getElementById('cpmResult').innerText = cpm.toFixed(2);
+            } else {
+                document.getElementById('cpmResult').innerText = '0.00';
+            }
+        }
+
+        // Calcula o CPM inicial na carga da página
+        calculateCPM();
+    </script>
+</body>
+
+</html>

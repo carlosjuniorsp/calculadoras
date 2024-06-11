@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleCalc.css" />
+    <title>Calculadora de CTR</title>
+</head>
+<body>
+    <h1>Calculadora de CTR</h1>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="impressionsRange">Número de Impressões: <span id="impressionsValue">1000</span></label>
+        </div>
+        <input type="range" id="impressionsRange" min="1" max="10000" value="1000" step="10" oninput="calculateCTR()" class="slider">
+    </div>
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="clicksRange">Número de Cliques: <span id="clicksValue">100</span></label>
+        </div>
+        <input type="range" id="clicksRange" min="0" max="1000" value="100" step="1" oninput="calculateCTR()" class="slider">
+    </div>
+    <div class="result">
+        CTR: <span id="ctrResult">10.00%</span>
+    </div>
+
+    <script>
+        function calculateCTR() {
+            // Obtém os valores dos inputs range
+            const impressions = document.getElementById('impressionsRange').value;
+            const clicks = document.getElementById('clicksRange').value;
+
+            // Atualiza os valores mostrados ao lado dos sliders
+            document.getElementById('impressionsValue').innerText = impressions;
+            document.getElementById('clicksValue').innerText = clicks;
+
+            // Calcula a CTR
+            if (impressions > 0) {
+                const ctr = (clicks / impressions) * 100;
+                document.getElementById('ctrResult').innerText = ctr.toFixed(2) + '%';
+            } else {
+                document.getElementById('ctrResult').innerText = '0.00%';
+            }
+        }
+
+        // Calcula a CTR inicial na carga da página
+        calculateCTR();
+    </script>
+</body>
+</html>
