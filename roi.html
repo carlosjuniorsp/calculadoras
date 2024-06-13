@@ -12,18 +12,30 @@
     <h1>Calculadora de ROI</h1>
     <div class="slider-container">
         <div class="slider-label">
-            <label for="investmentRange">Investimento: <span id="investmentValue">500</span></label>
+            <label for="returnRange">Faturamento (R$): <span id="returnValue">750</span></label>
         </div>
-        <input type="range" id="investmentRange" min="0" max="1000" value="500" step="10" oninput="calculateROI()" class="slider">
+        <input type="range" id="returnRange" min="0" max="2000" value="750" step="1" oninput="calculateROI()"
+            class="slider">
     </div>
+
     <div class="slider-container">
         <div class="slider-label">
-            <label for="returnRange">Retorno: <span id="returnValue">750</span></label>
+            <label for="marginRange">Margem de contribuição (R$): <span id="marginRangeValue">750</span></label>
         </div>
-        <input type="range" id="returnRange" min="0" max="2000" value="750" step="1" oninput="calculateROI()" class="slider">
+        <input type="range" id="marginRange" min="0" max="2000" value="750" step="1" oninput="calculateROI()"
+            class="slider">
     </div>
+
+    <div class="slider-container">
+        <div class="slider-label">
+            <label for="investmentRange">Investimento em mídia (R$): <span id="investmentValue">500</span></label>
+        </div>
+        <input type="range" id="investmentRange" min="0" max="1000" value="500" step="10" oninput="calculateROI()"
+            class="slider">
+    </div>
+
     <div class="result">
-        ROI: <span id="roiResult">50%</span>
+        ROI: <span id="roiResult">50</span>
     </div>
 
     <script>
@@ -31,17 +43,19 @@
             // Obtém os valores dos inputs range
             const investment = document.getElementById('investmentRange').value;
             const returnAmount = document.getElementById('returnRange').value;
+            const marginContribuition = document.getElementById('marginRange').value;
 
             // Atualiza os valores mostrados ao lado dos sliders
             document.getElementById('investmentValue').innerText = investment;
             document.getElementById('returnValue').innerText = returnAmount;
+            document.getElementById('marginRangeValue').innerText = marginContribuition;
 
             // Calcula o ROI
             if (investment > 0) {
-                const roi = ((returnAmount - investment) / investment) * 100;
-                document.getElementById('roiResult').innerText = roi.toFixed(2) + '%';
+                const roi = ((returnAmount * marginContribuition) - investment) - investment;
+                document.getElementById('roiResult').innerText = roi.toFixed(2) ;
             } else {
-                document.getElementById('roiResult').innerText = '0%';
+                document.getElementById('roiResult').innerText = '0';
             }
         }
 
