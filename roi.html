@@ -20,9 +20,9 @@
 
     <div class="slider-container">
         <div class="slider-label">
-            <label for="marginRange">Margem de contribuição (R$): <span id="marginRangeValue">750</span></label>
+            <label for="marginRange">Margem de contribuição (%): <span id="marginRangeValue">50</span></label>
         </div>
-        <input type="range" id="marginRange" min="0" max="2000" value="750" step="1" oninput="calculateROI()"
+        <input type="range" id="marginRange" min="0" max="100" value="50" step="1" oninput="calculateROI()"
             class="slider">
     </div>
 
@@ -52,8 +52,8 @@
 
             // Calcula o ROI
             if (investment > 0) {
-                const roi = ((returnAmount * marginContribuition) - investment) - investment;
-                document.getElementById('roiResult').innerText = roi.toFixed(2) ;
+                const roi = ((returnAmount - investment) / investment) * marginContribuition;
+                document.getElementById('roiResult').innerText = roi.toFixed(2);
             } else {
                 document.getElementById('roiResult').innerText = '0';
             }
