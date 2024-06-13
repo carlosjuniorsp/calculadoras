@@ -12,15 +12,15 @@
     <h1>Calculadora de CPM</h1>
     <div class="slider-container">
         <div class="slider-label">
-            <label for="costRange">Investimento em mídia (R$): <span id="costValue">500</span></label>
+            <label for="investimentCpmRange">Investimento em mídia (R$): <span id="investimentCpmValue">500</span></label>
         </div>
-        <input type="range" id="costRange" min="0" max="10000" value="500" step="10" oninput="calculateCPM()" class="slider">
+        <input type="range" id="investimentCpmRange" min="0" max="10000" value="500" step="10" oninput="calculateCPM()" class="slider">
     </div>
     <div class="slider-container">
         <div class="slider-label">
-            <label for="impressionsRange">Número de Impressões: <span id="impressionsValue">10000</span></label>
+            <label for="impressionsCpmRange">Número de Impressões: <span id="impressionsCpmValue">10000</span></label>
         </div>
-        <input type="range" id="impressionsRange" min="1" max="100000" value="10000" step="100"
+        <input type="range" id="impressionsCpmRange" min="1" max="100000" value="10000" step="100"
             oninput="calculateCPM()" class="slider">
     </div>
     <div class="result">
@@ -30,16 +30,16 @@
     <script>
         function calculateCPM() {
             // Obtém os valores dos inputs range
-            const cost = document.getElementById('costRange').value;
-            const impressions = document.getElementById('impressionsRange').value;
+            const investimentCpm = document.getElementById('investimentCpmRange').value;
+            const impressionsCpm = document.getElementById('impressionsCpmRange').value;
 
             // Atualiza os valores mostrados ao lado dos sliders
-            document.getElementById('costValue').innerText = cost;
-            document.getElementById('impressionsValue').innerText = impressions;
+            document.getElementById('investimentCpmValue').innerText = investimentCpm;
+            document.getElementById('impressionsCpmValue').innerText = impressionsCpm;
 
             // Calcula o CPM
-            if (impressions > 0) {
-                const cpm = (cost / impressions) * 1000;
+            if (impressionsCpm > 0) {
+                const cpm = (investimentCpm / impressionsCpm) * 1000;
                 document.getElementById('cpmResult').innerText = cpm.toFixed(2);
             } else {
                 document.getElementById('cpmResult').innerText = '0.00';
