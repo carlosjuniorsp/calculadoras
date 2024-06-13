@@ -16,9 +16,9 @@
     </div>
     <div class="slider-container">
         <div class="slider-label">
-            <label for="clicksRange">Número de Cliques: <span id="clicksValue">100</span></label>
+            <label for="clickRange">Número de Cliques: <span id="clickValue">100</span></label>
         </div>
-        <input type="range" id="clicksRange" min="0" max="1000" value="100" step="1" oninput="calculateCTR()" class="slider">
+        <input type="range" id="clickRange" min="0" max="1000" value="100" step="1" oninput="calculateCTR()" class="slider">
     </div>
     <div class="result">
         CTR: <span id="ctrResult">10.00%</span>
@@ -28,15 +28,15 @@
         function calculateCTR() {
             // Obtém os valores dos inputs range
             const impressions = document.getElementById('impressionsRange').value;
-            const clicks = document.getElementById('clicksRange').value;
+            const click = document.getElementById('clickRange').value;
 
             // Atualiza os valores mostrados ao lado dos sliders
             document.getElementById('impressionsValue').innerText = impressions;
-            document.getElementById('clicksValue').innerText = clicks;
+            document.getElementById('clickValue').innerText = click;
 
             // Calcula a CTR
             if (impressions > 0) {
-                const ctr = (clicks / impressions) * 100;
+                const ctr = (click / impressions) * 100;
                 document.getElementById('ctrResult').innerText = ctr.toFixed(2) + '%';
             } else {
                 document.getElementById('ctrResult').innerText = '0.00%';
