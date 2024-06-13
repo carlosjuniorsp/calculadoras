@@ -12,15 +12,15 @@
     <h1>Calculadora de CAC</h1>
     <div class="slider-container">
         <div class="slider-label">
-            <label for="costRange">Custo Total de Aquisição (R$): <span id="costValue">500</span></label>
+            <label for="costCacRange">Investimento em mídia (R$): <span id="costCacValue">500</span></label>
         </div>
-        <input type="range" id="costRange" min="0" max="10000" value="500" step="10" oninput="calculateCAC()" class="slider">
+        <input type="range" id="costCacRange" min="0" max="10000" value="500" step="10" oninput="calculateCAC()" class="slider">
     </div>
     <div class="slider-container">
         <div class="slider-label">
-            <label for="customersRange">Número de Clientes Adquiridos: <span id="customersValue">50</span></label>
+            <label for="customersCacRange">Número de Clientes Adquiridos: <span id="customersCacValue">50</span></label>
         </div>
-        <input type="range" id="customersRange" min="1" max="1000" value="50" step="1" oninput="calculateCAC()" class="slider">
+        <input type="range" id="customersCacRange" min="1" max="1000" value="50" step="1" oninput="calculateCAC()" class="slider">
     </div>
     <div class="result">
         CAC: R$ <span id="cacResult">10.00</span>
@@ -29,17 +29,17 @@
     <script>
         function calculateCAC() {
             // Obtém os valores dos inputs range
-            const cost = document.getElementById('costRange').value;
-            const customers = document.getElementById('customersRange').value;
+            const costCac = document.getElementById('costCacRange').value;
+            const customersCac = document.getElementById('customersCacRange').value;
 
             // Atualiza os valores mostrados ao lado dos sliders
-            document.getElementById('costValue').innerText = cost;
-            document.getElementById('customersValue').innerText = customers;
+            document.getElementById('costCacValue').innerText = costCac;
+            document.getElementById('customersCacValue').innerText = customersCac;
 
             // Calcula o CAC
-            if (customers > 0) {
-                const cac = cost / customers;
-                document.getElementById('cacResult').innerText = cac.toFixed(2);
+            if (customersCac > 0) {
+                const cac = costCac / customersCac;
+                document.getElementById('   ').innerText = cac.toFixed(2);
             } else {
                 document.getElementById('cacResult').innerText = '0.00';
             }
